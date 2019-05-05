@@ -223,29 +223,9 @@ class _Game extends State<Game> {
           ),
         ),
 
-//        Container(
-//          height: 300,
-//          width: 300,
-//          decoration: BoxDecoration(
-//            color: Colors.black26,
-//            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//          ),
-//        ),
+
       ],
     );
   }
 }
-/*
-class CustomPaintRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CustomPaint(
-        size: Size(300, 300), //指定画布大小
-        painter: Paint(myGame.cells,screenSize,titlePadding),
-      ),
-    );
-  }
-}
 
-*/

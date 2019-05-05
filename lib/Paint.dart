@@ -12,6 +12,10 @@ final Map<int, Color> BoxColors = <int, Color>{
   256: Colors.orange[700],
   512: Colors.orange[800],
   1024: Colors.orange[900],
+  2048:Colors.red,
+  4096:Colors.red[700],
+  8192:Colors.red[800],
+
 };
 
 class Painter extends CustomPainter {
