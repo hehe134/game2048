@@ -42,7 +42,7 @@ class Painter extends CustomPainter {
       for (int j = 0; j < columns; j += 1) {
         int num = cells[i][j];
         nums = num.toString();
-        print(num);
+//        print(num);
         paint.color = BoxColors.containsKey(num)
             ? BoxColors[num]
             : BoxColors[BoxColors.keys.last];

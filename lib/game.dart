@@ -3,7 +3,7 @@ import 'dart:math';
 class Game2048 {
   final int row;
   final int column;
-  int score=0;
+  int score = 0;
   bool over = false;
 
   Game2048(this.row, this.column);
@@ -23,15 +23,15 @@ class Game2048 {
   void newGame() {
     cells = List<List<int>>(column);
     for (int r = 0; r < column; r++) {
-      List<int> list=new List<int>(row);
+      List<int> list = new List<int>(row);
       for (int c = 0; c < row; c++) {
-        list[c]= 0;
+        list[c] = 0;
       }
-      cells[r]=list;
+      cells[r] = list;
     }
     getScore();
     randomCells(2);
-    over=false;
+    over = false;
   }
 
   void randomCells(int num) {
@@ -59,7 +59,85 @@ class Game2048 {
     return r.nextInt(3) == 0 ? 4 : 2;
   }
 
+  bool canUp() {
+    int f, n;
+    for (int r = 0; r < row; ++r) {
+      f = 0;
+      for (int c = column-1; c >=0; --c) {
+        print(f);
+        n = cells[r][c];
+        if (n == 0) {
+          if (f != 0) return true;
+        } else {
+          if (f == n)
+            return true;
+          else
+            f = n;
+        }
+      }
+    }
+    return false;
+  }
+
+  bool canDown() {
+    int f, n;
+    for (int r = 0; r < row; ++r) {
+      f = 0;
+      for (int c = 0; c <column; ++c) {
+        n = cells[r][c];
+        if (n == 0) {
+          if (f != 0) return true;
+        } else {
+          if (f == n)
+            return true;
+          else
+            f = n;
+        }
+      }
+    }
+    return false;
+  }
+
+  bool canRight() {
+    int f, n;
+    for (int c = 0; c < column; ++c) {
+      f = 0;
+      for (int r = 0; r < row; ++r) {
+        n = cells[r][c];
+        if (n == 0) {
+          if (f != 0) return true;
+        } else {
+          if (f == n)
+            return true;
+          else
+            f = n;
+        }
+      }
+    }
+    return false;
+  }
+
+  bool canLeft() {
+    int f, n;
+    for (int c = 0; c < column; ++c) {
+      f = 0;
+      for (int r = row - 1; r >= 0; --r) {
+        n = cells[r][c];
+        if (n == 0) {
+          if (f != 0) return true;
+        } else {
+          if (f == n)
+            return true;
+          else
+            f = n;
+        }
+      }
+    }
+    return false;
+  }
+
   void up() {
+    if (!canUp()) return;
     print("up\n");
     List<int> full;
     int n = 0;
@@ -87,6 +165,7 @@ class Game2048 {
   }
 
   void down() {
+    if (!canDown()) return;
     print("down\n");
     List<int> full;
     int n = 0;
@@ -106,7 +185,7 @@ class Game2048 {
         cells[r][c] = 0;
       }
       for (; c < column; c++) {
-        cells[r][c] = full[c-(column - full.length)];
+        cells[r][c] = full[c - (column - full.length)];
       }
     }
     randomCells(1);
@@ -114,6 +193,7 @@ class Game2048 {
   }
 
   void left() {
+    if (!canLeft()) return;
     print("left\n");
     List<int> full;
     int n = 0;
@@ -141,6 +221,7 @@ class Game2048 {
   }
 
   void right() {
+    if (!canRight()) return;
     print("right\n");
     List<int> full;
     int n = 0;
@@ -160,14 +241,12 @@ class Game2048 {
         cells[r][c] = 0;
       }
       for (; r < column; r++) {
-        cells[r][c] = full[r-(column - full.length)];
+        cells[r][c] = full[r - (column - full.length)];
       }
     }
     randomCells(1);
     getScore();
   }
-
-
 }
 
 class Point {
